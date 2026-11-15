@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr" data-mode="light" data-palette="graphite">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RevyzMed</title>
+<meta name="description" content="RevyzMed — fiches de cours et questions interactives : Appareil Locomoteur et Appareil Digestif.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2337352f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23fff'%3ER%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<script>
+  try {
+    var m = localStorage.getItem("rv.mode"), p = localStorage.getItem("rv.palette");
+    if (!m) m = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    document.documentElement.setAttribute("data-mode", m);
+    if (p) document.documentElement.setAttribute("data-palette", p);
+  } catch (e) {}
+</script>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <div class="scrim" id="scrim"></div>
+  <div class="main">
+    <header class="topbar">
+      <button class="ibtn" id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <nav class="crumbs" id="crumbs"></nav>
+      <button class="ibtn" id="searchBtn" title="Rechercher" aria-label="Rechercher"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <button class="ibtn" id="modeBtn" title="Mode jour / nuit" aria-label="Mode jour / nuit"><svg viewBox="0 0 24 24" id="modeIc"></svg></button>
+      <button class="ibtn" id="setBtn" title="Paramètres" aria-label="Paramètres"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+    </header>
+    <main id="app"></main>
+  </div>
+</div>
+
+<div class="modal" id="settings" hidden>
+  <div class="mcard">
+    <div class="mhead"><h3>Paramètres</h3><button class="ibtn" data-close aria-label="Fermer"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="srow"><div class="sl"><b>Apparence</b><span>Mode jour ou mode nuit</span></div>
+      <div class="seg" id="sMode"><button data-v="light">☀︎ Jour</button><button data-v="dark">☾ Nuit</button></div></div>
+    <div class="srow" style="display:block"><div class="sl" style="margin-bottom:10px"><b>Couleur du site</b><span>Teintes sobres, reposantes pour les yeux</span></div>
+      <div class="swatches" id="sPal"></div></div>
+    <div class="srow"><div class="sl"><b>Chronomètre</b><span>Pour les tests (et l'entraînement si coché ci-dessous)</span></div>
+      <label class="switch"><input type="checkbox" id="sTimer"><span></span></label></div>
+    <div id="timerOpts" style="padding:0 0 12px">
+      <div class="seg" id="sTimerMode" style="margin-bottom:10px"><button data-v="q">Par question</button><button data-v="t">Pour tout le test</button></div>
+      <div class="range" id="rQ"><input type="range" id="sTimerQ" min="15" max="240" step="15"><output id="oQ"></output></div>
+      <div class="range" id="rT"><input type="range" id="sTimerT" min="5" max="90" step="5"><output id="oT"></output></div>
+      <label style="display:flex;gap:8px;align-items:center;font-size:13.5px;margin-top:8px;cursor:pointer"><input type="checkbox" id="sTimerBank" style="accent-color:var(--acc)"> Aussi pendant l'entraînement</label>
+    </div>
+    <div class="srow"><div class="sl"><b>Correction immédiate en test</b><span>Sinon, correction à la fin du test</span></div>
+      <label class="switch"><input type="checkbox" id="sInstant"><span></span></label></div>
+    <div class="srow"><div class="sl"><b>Questions par test</b><span>20 par défaut</span></div>
+      <div class="stepper"><button id="nM">−</button><output id="sN">20</output><button id="nP">+</button></div></div>
+    <div class="srow"><div class="sl"><b>Remettre à zéro</b><span>Efface la progression enregistrée sur cet appareil</span></div>
+      <button class="btn sm" id="sReset">Effacer</button></div>
+  </div>
+</div>
+<div class="lightbox" id="lightbox" hidden><img alt=""></div>
+
+<script src="data/revyz.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
