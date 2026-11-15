@@ -1,21 +1,21 @@
 <!doctype html>
-<html lang="fr" data-mode="light" data-palette="graphite">
+<html lang="fr" data-mode="dark" data-palette="cyan">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RevyzMed</title>
 <meta name="description" content="RevyzMed — fiches de cours et questions interactives : Appareil Locomoteur et Appareil Digestif.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2337352f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23fff'%3ER%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.35' cy='.3' r='.8'%3E%3Cstop offset='0' stop-color='%2300f0ff'/%3E%3Cstop offset='1' stop-color='%231e63d6'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='30' fill='url(%23g)'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='900' text-anchor='middle' fill='%2310131f'%3ER%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/app.css">
 <script>
   try {
     var m = localStorage.getItem("rv.mode"), p = localStorage.getItem("rv.palette");
-    if (!m) m = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    if (!m) m = "dark";
     document.documentElement.setAttribute("data-mode", m);
-    if (p) document.documentElement.setAttribute("data-palette", p);
+    if (p && /^(cyan|lime|orange|pink|purple|slate)$/.test(p)) document.documentElement.setAttribute("data-palette", p);
   } catch (e) {}
 </script>
 </head>

@@ -74,8 +74,9 @@
   }
 
   /* ------------------------------------------------------------ thème */
-  var PALS = [["graphite", "Graphite", "#2f3437"], ["blanc", "Blanc", "#f4f4f4"], ["ardoise", "Ardoise", "#4f6274"], ["sauge", "Sauge", "#44705a"],
-    ["nuit", "Bleu nuit", "#24395f"], ["prune", "Prune", "#67498a"], ["bordeaux", "Bordeaux", "#8b3a3e"], ["ivoire", "Ivoire", "#c8a874"]];
+  var PALS = [["cyan", "Cyan", "radial-gradient(circle at 35% 28%, #00f0ff, #1e63d6 78%)"], ["lime", "Vert", "radial-gradient(circle at 35% 28%, #dcf03c, #4c8a1a 78%)"],
+    ["orange", "Orange", "radial-gradient(circle at 35% 28%, #ffb03b, #f04e0c 78%)"], ["pink", "Rose", "radial-gradient(circle at 35% 28%, #ff5aa5, #c0105f 78%)"],
+    ["purple", "Violet", "radial-gradient(circle at 35% 28%, #c37bff, #6327d6 78%)"], ["slate", "Ardoise", "radial-gradient(circle at 35% 28%, #a9b8d6, #4a587a 78%)"]];
   function mode() { return document.documentElement.getAttribute("data-mode"); }
   function setMode(m) { document.documentElement.setAttribute("data-mode", m); try { localStorage.setItem("rv.mode", m); } catch (e) {} $("#modeIc").innerHTML = IC[m === "dark" ? "sun" : "moon"]; syncSettings(); }
   function setPal(p) { document.documentElement.setAttribute("data-palette", p); try { localStorage.setItem("rv.palette", p); } catch (e) {} syncSettings(); }
@@ -819,7 +820,7 @@
   $$("#sPal .sw").forEach(function (b) { b.addEventListener("click", function () { setPal(b.getAttribute("data-p")); }); });
   $$("#sMode button").forEach(function (b) { b.addEventListener("click", function () { setMode(b.getAttribute("data-v")); }); });
   function syncSettings() {
-    var pal = document.documentElement.getAttribute("data-palette") || "graphite";
+    var pal = document.documentElement.getAttribute("data-palette") || "cyan";
     $$("#sPal .sw").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-p") === pal); });
     $$("#sMode button").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-v") === mode()); });
     $("#sTimer").checked = S.timer; $("#timerOpts").style.display = S.timer ? "" : "none";
