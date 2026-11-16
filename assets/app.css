@@ -409,7 +409,7 @@ h1, h2, h3, h4, h5 { font-family: var(--head); }
 .corr .cb p { margin: 0 0 6px; }
 .corr .cb strong { color: var(--corr); }
 .excerpt { margin: 10px 0 2px; border: 2px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; }
-.excerpt .crop { position: relative; width: 100%; overflow: hidden; max-height: 420px; }
+.excerpt .crop { position: relative; width: 100%; overflow: hidden; margin: 0 auto; }
 .excerpt .crop img { position: absolute; max-width: none; display: block; }
 .excerpt .cap { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 7px 12px; font-size: 12.5px; color: #4a5170; background: #f2f4fa; border-top: 1px solid #e3e7f2; flex-wrap: wrap; }
 .excerpt .cap a, .excerpt .cap button { color: #1e63d6; font-weight: 700; text-decoration: none; background: none; border: 0; padding: 0; font-size: 12.5px; }

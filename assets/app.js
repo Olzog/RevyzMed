@@ -516,7 +516,7 @@
     if (y1 - y0 < 24) y1 = Math.min(H, y0 + 40);
     var cw = x1 - x0, chh = y1 - y0, src = "lessons/" + q.lesson + "/pages/" + r.doc + "-p" + r.page + ".jpg";
     var L = LESSONS[q.lesson];
-    return '<div class="excerpt"><div class="crop" style="aspect-ratio:' + cw + " / " + chh + '"><img src="' + src + '" alt="Extrait du cours" loading="lazy" style="width:' + (W / cw * 100) + "%;left:" + (-x0 / cw * 100) + "%;top:" + (-y0 / chh * 100) + '%"></div>' +
+    return '<div class="excerpt"><div class="crop" style="aspect-ratio:' + cw + " / " + chh + ";max-width:" + Math.round(440 * cw / chh) + "px" + '"><img src="' + src + '" alt="Extrait du cours" loading="lazy" style="width:' + (W / cw * 100) + "%;left:" + (-x0 / cw * 100) + "%;top:" + (-y0 / chh * 100) + '%"></div>' +
       '<div class="cap"><span>Extrait du cours — ' + esc(L.short || L.title) + ", page " + r.page + '</span><span style="display:flex;gap:12px"><button data-full="' + src + '">Page entière</button><a href="#/l/' + q.lesson + "/fiche/" + r.page + '">Ouvrir la fiche</a></span></div></div>';
   }
 
